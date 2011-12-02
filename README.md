@@ -1,6 +1,18 @@
-### Example usage:
+hl -- highlighter
+=================
 
-    cat FILE | hl.pl -e PATTERN
-    cat FILE | hl.pl -l 1,2,10-20
-    cat FILE | hl.pl -l 1,2,10-20 -e PATTERN
-    hl.pl -e PATTERN -l 10 FILE FILE...
+Installation
+------------
+```bash
+ln -s hl.pl ~/bin/hl
+```
+
+Usage
+-----
+
+```bash
+$ hl -e PATTERN -l 10 FILE FILE...
+$ cat FILE | hl -e PATTERN
+$ cat FILE | hl -l 1,2,10-20 -e PATTERN
+$ ls -lash | hl -e '-([\w-]{2}x){3}' -l 2-4
+```
