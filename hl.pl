@@ -9,9 +9,13 @@ my $range_start = 0+'inf';
 my $range_end = 0+'inf';
 my $counter = 1;
 
-my $regex = shift @ARGV;
-getopts('vl:', \%opts);
-my $lines = $opts{'l'};
+getopts('vl:e:', \%opts);
+
+my $lines = $opts{'l'} if exists $opts{'l'};
+my $regex = $opts{'e'} if exists $opts{'e'};
+
+$lines ||= '';
+$regex ||= '';
 
 while(<>) {
   if (grep(/\b$counter-/, $lines)) {
@@ -28,7 +32,6 @@ while(<>) {
   }
 
   if($counter >= $range_start and $counter <= $range_end) {
-  # if($range_start and $counter >= $range_start and ((not $range_end) or $counter <= $range_end)) {
     if ($_ =~ m/${regex}/) {
       s/(.*)/colored($+, 'on_cyan')/e;
     } else {
