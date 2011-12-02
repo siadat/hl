@@ -13,9 +13,11 @@ getopts('vl:e:', \%opts);
 
 my $lines = $opts{'l'} if exists $opts{'l'};
 my $regex = $opts{'e'} if exists $opts{'e'};
+my $invert = $opts{'v'} if exists $opts{'v'};
 
 $lines ||= '';
 $regex ||= '';
+$invert ||= '';
 
 while(<>) {
   if (grep(/\b$counter-/, $lines)) {
@@ -32,13 +34,13 @@ while(<>) {
   }
 
   if($counter >= $range_start and $counter <= $range_end) {
-    if ($_ =~ m/${regex}/) {
+    if ($regex and $_ =~ m/$regex/) {
       s/(.*)/colored($+, 'on_cyan')/e;
     } else {
-      s/(.*)/colored($+, 'on_black')/e;
+      s/(.*)/colored($+, 'black on_yellow')/e;
     }
-  } else {
-    s/(${regex})/colored($+, 'cyan')/eg;
+  } elsif($regex) {
+    s/($regex)/colored($+, 'cyan')/eg;
   }
 
   $counter++;
