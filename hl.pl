@@ -40,7 +40,7 @@ while(<>) {
       s/(.*)/colored($+, 'black on_yellow')/e;
     }
   } elsif($regex) {
-    s/($regex)/colored($+, 'cyan')/eg;
+    s/($regex)/colored($1, 'cyan')/eg;
   }
 
   $counter++;
