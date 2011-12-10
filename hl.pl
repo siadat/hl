@@ -11,13 +11,9 @@ my $counter = 1;
 
 getopts('vl:e:', \%opts);
 
-my $lines = $opts{'l'} if exists $opts{'l'};
-my $regex = $opts{'e'} if exists $opts{'e'};
-my $invert = $opts{'v'} if exists $opts{'v'};
-
-$lines ||= '';
-$regex ||= '';
-$invert ||= '';
+my $lines  = ($opts{'l'} || '');
+my $regex  = ($opts{'e'} || '');
+my $invert = ($opts{'v'} || '');
 
 while(<>) {
   if (grep(/\b$counter-/, $lines)) {

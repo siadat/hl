@@ -4,7 +4,7 @@ hl -- highlighter
 Installation
 ------------
 ```bash
-ln -s hl.pl ~/bin/hl
+$ ln -s hl.pl ~/bin/hl
 ```
 
 Usage
